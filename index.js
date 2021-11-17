@@ -3,8 +3,8 @@
 /**
  * identity: designed to return the input argument unchanged
  * 
- * @param any value
- * @returns original argument
+ * @param value - can be anything
+ * @returns original argument unchanged
  * 
  */
 
@@ -18,7 +18,7 @@ module.exports.identity = identity;
  * typeOf: designed to take an argument and return its data type, e.g. 
  * number, boolean, array.
  * 
- * @param any value
+ * @param value
  * @returns the argument's data type 
  * 
 */
@@ -50,9 +50,9 @@ module.exports.typeOf = typeOf;
  * of elements in the array. If the array isn't an array, it returns []. If
  * the number isnt a number, the first item in the array is returned. 
  * 
- * @param an array
- * @param a number
- * @returns an array
+ * @param array to be truncated
+ * @param number of elements to be returned
+ * @returns array representing the first number of elements 
  * 
  */
 
@@ -77,9 +77,9 @@ module.exports.first = first;
  * of elements in the array. If the array isn't an array, it returns []. If
  * the number isnt a number, the first item in the array is returned. 
  * 
- * @param an array
- * @param a number
- * @returns an array
+ * @param array to be truncated
+ * @param number of elements to be returned
+ * @returns array representing the last number of elements from the original array
  * 
  */
 
@@ -103,9 +103,9 @@ module.exports.last = last;
  * indexOf: designed to loop over an array and return the index of the 
  * first occurrance of the value. It returns -1 if value is not in the array. 
  * 
- * @param an array
- * @param a value
- * @returns a number
+ * @param array to be looped over
+ * @param value to be checked if it exists in the array
+ * @returns number representing the index of the passed value if it exists
  * 
  */
 
@@ -122,12 +122,12 @@ module.exports.indexOf = indexOf;
 
 
 /**
- * contains: Designed to determine if an array contains a value and
+ * contains: designed to determine if an array contains a value and
  * return true/false. 
  *  
- * @param array
- * @param value
- * @returns boolean
+ * @param array to be checked
+ * @param value to be searched for
+ * @returns boolean representing whether or not the value exists within the array
  * 
  */
 
@@ -141,9 +141,8 @@ module.exports.contains = contains;
  * each: Designed to loop over a collection, Array or Object, and applies the 
  * action Function to each value in the collection.
  * 
- * @param a collection: The collection over which to iterate.
- * @param a function: The Function to be applied to each value in the 
- * collection
+ * @param a collection over which to iterate
+ * @param a function to be applied to each value in the collection
  * @returns nothing
  * 
  */
@@ -166,8 +165,8 @@ module.exports.each = each;
  * unique: designed to remove all duplicate elements of an array
  * and return an array with only unique items
  * 
- * @param an array
- * @returns an array
+ * @param  array to be looped over
+ * @returns argument array minus any repeated elements
  * 
  */
 
@@ -189,9 +188,9 @@ module.exports.unique = unique;
  * function. If the function resolves to true, push the element
  * into a new array. If the function resolves to false, do nothing
  * 
- * @param an array to be looped over
- * @param a tester function to be applied to each element
- * @returns a new array containing only elements that resolve to true
+ * @param array to be looped over
+ * @param tester function to be applied to each element
+ * @returns new array containing only elements that resolve to true
  * 
  */
 
@@ -212,9 +211,9 @@ function filter(array, func) {
  * function. If the function resolves to false, push the element
  * into a new array. If the function resolves to true, do nothing
  * 
- * @param an array to be looped over
- * @param a tester function to be applied to each element
- * @returns a new array containing only elements that resolve to false
+ * @param array to be looped over
+ * @param tester function to be applied to each element
+ * @returns new array containing only elements that resolve to false
  * 
  */
 
@@ -235,9 +234,9 @@ module.exports.reject = reject;
  * sort the elements of the original array by whether they resolve
  * to true or false when the given function is applied to them. 
  * 
- * @param an array to be looped over
- * @param a tester function to be applied to each element
- * @returns a new array of sorted elements
+ * @param array to be looped over
+ * @param tester function to be applied to each element
+ * @returns new array of elements sorted into true and false returns
  * 
  */
 
@@ -262,9 +261,9 @@ module.exports.partition = partition;
  * map: designed to apply a function to each element or value in
  * a collection and return an array of each modified element 
  * 
- * @param an array or object
- * @param a tester function
- * @returns an array of new values
+ * @param array or object to be iterated over
+ * @param tester function to be applied to each element or value
+ * @returns array of elements returned from the tester function
  */
 
 function map(collection, func) {
@@ -289,9 +288,9 @@ module.exports.map = map;
  * pluck: designed to take an array of objects and return the 
  * values of each key that matches an input property
  * 
- * @param an array of objects
- * @param a property
- * @returns an array contain only values at property
+ * @param array of objects to be interated over
+ * @param string to be checked as a property in the array's objects
+ * @returns array containing only values at the property 
  * 
  */
 
@@ -314,9 +313,9 @@ function pluck(array, property) {
  * elements/values, every returns true. If it returns false for any
  * element/value, every returns false  
  * 
- * @param a collection
- * @param a function
- * @returns boolean
+ * @param collection to be iterated over
+ * @param function to apply at each iteration
+ * @returns boolean - true if the function returns true at all elements, false otherwise
  * 
  */
 
@@ -371,9 +370,9 @@ function every(collection, func) {
  * elements/values, some returns true. If it returns false for all
  * elements/values, some returns false  
  * 
- * @param a collection
- * @param a function
- * @returns boolean
+ * @param collection to be iterated over
+ * @param function to be applied at each iteration
+ * @returns boolean - true if the function returns true at any element, false otherwise
  * 
  */
 
@@ -434,10 +433,11 @@ module.exports.some = some;
  * previous, current, index, and array. At each application, 
  * the seed may be updated based on the code block. 
  * 
- * @param a array to be looped over
- * @param a function
- * @param a seed or starting value for the return statement (optional)
- * @returns single value determined by the seed or the first element
+ * @param array to be looped over
+ * @param function to be applied at each iteration
+ * @param seed optional starting value for the return statement
+ * @returns single value determined by the seed or the first element as 
+ *        modified by the function on each iteration
  * 
  */
 
@@ -462,8 +462,8 @@ module.exports.reduce = reduce;
  * adds all key-value pairs from as many other objects as are given
  * to the original objects, returning it. 
  * 
- * @param an object
- * @param an object or multiple objects
+ * @param object to be modified
+ * @param object(s) to be added to the original object
  * @returns the original object with added key-value pairs
  */
 
